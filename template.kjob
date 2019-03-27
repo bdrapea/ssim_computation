@@ -1,0 +1,424 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<job version='3.9.2.0'>
+   <time>2019-03-22 17:13:38</time>
+   <src>ATEME TITAN File Job Composer 3.9.4 (pkg.4.9.4.0)</src>
+   <priority>normal</priority>
+   <trigger enabled='false'>
+      <dir>c:\trigger_in</dir>
+      <mask>*.*</mask>
+      <job_name>Template-%1%</job_name>
+   </trigger>
+   <segment idx='1'>
+      <crop enabled='false' top='0' left='0' width='0' height='0' if_width='0' if_height='0' />
+      <input idx='1'>
+         <file>\\cisi-pfmaf-s.ad.cdn\data-woode\data\prod\travail\AOL\CUT_pivot\PLATEAU\PROFESSION___ACTEUR_2737735_23905371.stl_20190318_113319\PROFESSION___ACTEUR_2737735_2390537.mxf</file>
+         <mode>default</mode>
+         <detect_op enabled='false' />
+         <detect_nielsen enabled='false' />
+         <optional enabled='false' />
+         <ephemeral enabled='false' />
+         <audio_map>Default</audio_map>
+         <pixel_aspect_ratio_preference>default</pixel_aspect_ratio_preference>
+         <enable_vbi enabled='false' />
+         <video idx='1' service='1' stream='1'>
+            <mapping>1</mapping>
+            <frame_rate enabled='false' num='0' den='0' />
+            <frame_type>unspecified</frame_type>
+            <field_order>unspecified</field_order>
+            <display_aspect_ratio enabled='false' num='0' den='0' />
+            <colorimetry>
+               <colour_primaries enabled='false' value='bt709' />
+               <transfer_characteristics enabled='false' value='bt709' />
+               <matrix_coefficients enabled='false' value='bt709' />
+               <range enabled='false' value='head' />
+               <chroma_sample_location enabled='false' value='2' />
+            </colorimetry>
+         </video>
+      </input>
+   </segment>
+   <general>
+      <smart_video_audio_alignment enabled='false' />
+      <synchronize_timecodes enabled='false' />
+      <mutualize_decoding enabled='false' />
+      <encoding_policy>speed</encoding_policy>
+      <strategy>overwrite</strategy>
+      <default_audio_map>Default</default_audio_map>
+      <pixel_aspect_ratio_preference>default</pixel_aspect_ratio_preference>
+      <temporary_file_policy>envTemp</temporary_file_policy>
+      <output_temporary_file_generation enabled='false' />
+      <post_script enabled='false'>
+         <command></command>
+      </post_script>
+      <generate_output_checksum enabled='false' />
+      <delete_inputs_on_completion enabled='false' />
+      <statistics enabled='false' md5='false' />
+   </general>
+   <video_track idx='1' name=''>
+      <encoding idx='1' passthrough='false' codec='avc'>
+         <input>
+            <deringing_filter enabled='false' />
+            <deblocking_filter enabled='false' />
+         </input>
+         <gop open='false' />
+         <display_aspect_ratio enabled='true' num='16' den='9' />
+         <frame_type>progressive</frame_type>
+         <field_order>passthrough</field_order>
+         <format>unspecified</format>
+         <colorimetry type='bt709' enable_signalling='true' enable_processing='false'>
+            <colour_primaries>bt709</colour_primaries>
+            <transfer_characteristics>bt709</transfer_characteristics>
+            <matrix_coefficients>bt709</matrix_coefficients>
+            <range>head</range>
+            <chroma_sample_location enabled='false' type='2' />
+            <hlg_backward_compatibility enabled='false' sdr_transfer_characteristics='bt2020' />
+            <mastering_display_colour_volume enabled='false'>
+               <primaries>
+                  <red x='0.68' y='0.32' />
+                  <green x='0.265' y='0.69' />
+                  <blue x='0.15' y='0.06' />
+                  <white x='0.3127' y='0.329' />
+               </primaries>
+               <luminance min='0.005' max='1000' />
+            </mastering_display_colour_volume>
+            <content_light_level_information enabled='false'>
+               <maximum_content_light_level>1000</maximum_content_light_level>
+               <maximum_frame_average_light_level>300</maximum_frame_average_light_level>
+            </content_light_level_information>
+         </colorimetry>
+         <crop enabled='true' top='32' left='0' width='720' height='576' if_width='0' if_height='608' />
+         <denoise type='disabled' strength='1' fft2d_strength='low' />
+         <dithering enabled='false' />
+         <prefs resize='bicubic' deinterlace='auto' detect_telecine='false' field_match='disabled' telecine='hard' resample='duplication' />
+         <watermarking enabled='false' type='nexguard_pre_release'>
+            <nexguard_pre_release>
+               <strength>medium</strength>
+               <id>1</id>
+            </nexguard_pre_release>
+            <nexguard_streaming>
+               <strength>10</strength>
+               <sequence>main</sequence>
+            </nexguard_streaming>
+            <nexguard_pay_tv strength='2' license_string='' />
+         </watermarking>
+         <rate_control>cbr</rate_control>
+         <avc conformance='none'>
+            <cpb size='1000' unit='ms' initial_occupancy='100' />
+            <quality ratio='default' optimization='visual' />
+            <bframe min='0' max='7' hierarchical='true' />
+            <deblocking enabled='true' offset='0' />
+            <tools entropy='cabac' encoding='auto' num_slices='0' weighted_prediction='true' />
+            <compatibility hrd='true' afd='false' eos='false' eob='false' parameter_sets_on_key_frame_only='true' custom_matrices='true' mpps='true' frm_pack='passthrough' />
+            <userdata_sei enabled='false' uuid='' value='' />
+         </avc>
+         <variant idx='1'>
+            <cores>0</cores>
+            <frame_size enabled='true' width='416' height='234' />
+            <frame_rate enabled='true' num='25' den='1' />
+            <gop min='50' max='50' />
+            <timecodes mode='disabled'>
+               <first_timecode hours='0' minutes='0' seconds='0' frames='0' drop='false' />
+            </timecodes>
+            <technical_burn enabled='false'>
+               <displayed>%TIMECODE%</displayed>
+               <size font='600' font_unit='percentage' contour='900' contour_unit='percentage' />
+               <color font='#FFFFFF' contour='#000000' />
+               <position x='5000' y='9000' unit='percentage' horizontal_anchor='center' vertical_anchor='bottom' />
+            </technical_burn>
+            <avc profile='main' level='3_0'>
+               <compatibility max_num_ref_frames='0' />
+            </avc>
+            <subvariant idx='1' fragmentation_index='0'>
+               <bitrate target='190000' min='0' min_avg='0' max='25000000' max_avg='25000000' quality='500' />
+            </subvariant>
+         </variant>
+         <variant idx='2'>
+            <cores>0</cores>
+            <frame_size enabled='true' width='480' height='270' />
+            <frame_rate enabled='true' num='25' den='1' />
+            <gop min='50' max='50' />
+            <timecodes mode='disabled'>
+               <first_timecode hours='0' minutes='0' seconds='0' frames='0' drop='false' />
+            </timecodes>
+            <technical_burn enabled='false'>
+               <displayed>%TIMECODE%</displayed>
+               <size font='600' font_unit='percentage' contour='900' contour_unit='percentage' />
+               <color font='#FFFFFF' contour='#000000' />
+               <position x='5000' y='9000' unit='percentage' horizontal_anchor='center' vertical_anchor='bottom' />
+            </technical_burn>
+            <avc profile='main' level='3_0'>
+               <compatibility max_num_ref_frames='0' />
+            </avc>
+            <subvariant idx='1' fragmentation_index='0'>
+               <bitrate target='750000' min='0' min_avg='0' max='4000000' max_avg='1500000' quality='500' />
+            </subvariant>
+         </variant>
+         <variant idx='3'>
+            <cores>0</cores>
+            <frame_size enabled='true' width='640' height='360' />
+            <frame_rate enabled='true' num='25' den='1' />
+            <gop min='100' max='100' />
+            <timecodes mode='disabled'>
+               <first_timecode hours='0' minutes='0' seconds='0' frames='0' drop='false' />
+            </timecodes>
+            <technical_burn enabled='false'>
+               <displayed>%TIMECODE%</displayed>
+               <size font='600' font_unit='percentage' contour='900' contour_unit='percentage' />
+               <color font='#FFFFFF' contour='#000000' />
+               <position x='5000' y='9000' unit='percentage' horizontal_anchor='center' vertical_anchor='bottom' />
+            </technical_burn>
+            <avc profile='main' level='3_0'>
+               <compatibility max_num_ref_frames='0' />
+            </avc>
+            <subvariant idx='1' fragmentation_index='0'>
+               <bitrate target='1100000' min='0' min_avg='0' max='4000000' max_avg='1500000' quality='500' />
+            </subvariant>
+         </variant>
+         <variant idx='4'>
+            <cores>0</cores>
+            <frame_size enabled='true' width='960' height='540' />
+            <frame_rate enabled='true' num='25' den='1' />
+            <gop min='50' max='50' />
+            <timecodes mode='disabled'>
+               <first_timecode hours='0' minutes='0' seconds='0' frames='0' drop='false' />
+            </timecodes>
+            <technical_burn enabled='false'>
+               <displayed>%TIMECODE%</displayed>
+               <size font='600' font_unit='percentage' contour='900' contour_unit='percentage' />
+               <color font='#FFFFFF' contour='#000000' />
+               <position x='5000' y='9000' unit='percentage' horizontal_anchor='center' vertical_anchor='bottom' />
+            </technical_burn>
+            <avc profile='main' level='3_1'>
+               <compatibility max_num_ref_frames='0' />
+            </avc>
+            <subvariant idx='1' fragmentation_index='0'>
+               <bitrate target='1500000' min='0' min_avg='0' max='4000000' max_avg='2500000' quality='500' />
+            </subvariant>
+            <subvariant idx='2' fragmentation_index='0'>
+               <bitrate target='2100000' min='0' min_avg='0' max='4000000' max_avg='2100000' quality='500' />
+            </subvariant>
+         </variant>
+         <variant idx='5'>
+            <cores>0</cores>
+            <frame_size enabled='true' width='1280' height='720' />
+            <frame_rate enabled='true' num='25' den='1' />
+            <gop min='50' max='50' />
+            <timecodes mode='disabled'>
+               <first_timecode hours='0' minutes='0' seconds='0' frames='0' drop='false' />
+            </timecodes>
+            <technical_burn enabled='false'>
+               <displayed>%TIMECODE%</displayed>
+               <size font='600' font_unit='percentage' contour='900' contour_unit='percentage' />
+               <color font='#FFFFFF' contour='#000000' />
+               <position x='5000' y='9000' unit='percentage' horizontal_anchor='center' vertical_anchor='bottom' />
+            </technical_burn>
+            <avc profile='high' level='3_1'>
+               <compatibility max_num_ref_frames='0' />
+            </avc>
+            <subvariant idx='1' fragmentation_index='0'>
+               <bitrate target='3400000' min='0' min_avg='0' max='4000000' max_avg='3500000' quality='500' />
+            </subvariant>
+         </variant>
+         <variant idx='6'>
+            <cores>0</cores>
+            <frame_size enabled='true' width='1920' height='1080' />
+            <frame_rate enabled='true' num='25' den='1' />
+            <gop min='50' max='50' />
+            <timecodes mode='disabled'>
+               <first_timecode hours='0' minutes='0' seconds='0' frames='0' drop='false' />
+            </timecodes>
+            <technical_burn enabled='false'>
+               <displayed>%TIMECODE%</displayed>
+               <size font='600' font_unit='percentage' contour='900' contour_unit='percentage' />
+               <color font='#FFFFFF' contour='#000000' />
+               <position x='5000' y='9000' unit='percentage' horizontal_anchor='center' vertical_anchor='bottom' />
+            </technical_burn>
+            <avc profile='high' level='4_1'>
+               <compatibility max_num_ref_frames='0' />
+            </avc>
+            <subvariant idx='1' fragmentation_index='0'>
+               <bitrate target='4500000' min='0' min_avg='0' max='4500000' max_avg='4500000' quality='500' />
+            </subvariant>
+         </variant>
+      </encoding>
+   </video_track>
+   <muxers>
+      <ts enabled='true' output_idx='1'>
+         <id>1</id>
+         <program>1</program>
+         <pat period='125' />
+         <pmt period='125' pid='480' />
+         <pcr pid='0' />
+         <scte35 pid='0' />
+         <starting_pts>-1</starting_pts>
+         <compatibility padding='true' conformance_tables='false' audio_pes_align='true' num_aus_per_audio_pes='1' dvb_au='false' pcr_on_pes='false' skip_empty_af='false' unconstrained_pes='false' ad_splicing='false' discontinuity_indicators='false' mpeg2_layer2_signaling='false' allow_rollover='false' />
+         <chunking>
+            <fragment_duration>2</fragment_duration>
+         </chunking>
+         <ebp enabled='false' explicit_for_all_streams='false' />
+         <conformance>mpeg</conformance>
+         <presentation idx='1'>
+            <stream idx='1' pid='0'>
+               <track type='video' id='1.1.1.1' />
+            </stream>
+            <stream idx='2' pid='0'>
+               <track type='video' id='1.1.2.1' />
+            </stream>
+            <stream idx='3' pid='0'>
+               <track type='video' id='1.1.3.1' />
+            </stream>
+            <stream idx='4' pid='0'>
+               <track type='video' id='1.1.4.1' />
+            </stream>
+            <stream idx='5' pid='0'>
+               <track type='video' id='1.1.4.2' />
+            </stream>
+            <stream idx='6' pid='0'>
+               <track type='video' id='1.1.5.1' />
+            </stream>
+            <stream idx='7' pid='0'>
+               <track type='video' id='1.1.6.1' />
+            </stream>
+            <output idx='1'>
+               <media_path>%OUTPUT_NAME%_SD_190kbps.ts</media_path>
+               <stream_list>1</stream_list>
+               <bitrate target='0' />
+            </output>
+            <output idx='2'>
+               <media_path>%OUTPUT_NAME%_SD_750kbps.ts</media_path>
+               <stream_list>2</stream_list>
+               <bitrate target='0' />
+            </output>
+            <output idx='3'>
+               <media_path>%OUTPUT_NAME%_SD_1100kbps.ts</media_path>
+               <stream_list>3</stream_list>
+               <bitrate target='0' />
+            </output>
+            <output idx='4'>
+               <media_path>%OUTPUT_NAME%_SD_1500kbps.ts</media_path>
+               <stream_list>4</stream_list>
+               <bitrate target='0' />
+            </output>
+            <output idx='5'>
+               <media_path>%OUTPUT_NAME%_SD_2100kbs.ts</media_path>
+               <stream_list>5</stream_list>
+               <bitrate target='0' />
+            </output>
+            <output idx='6'>
+               <media_path>%OUTPUT_NAME%_HD_3400kbs.ts</media_path>
+               <stream_list>6</stream_list>
+               <bitrate target='0' />
+            </output>
+            <output idx='7'>
+               <media_path>%OUTPUT_NAME%_FHD_4500kbs.ts</media_path>
+               <stream_list>7</stream_list>
+               <bitrate target='0' />
+            </output>
+         </presentation>
+      </ts>
+   </muxers>
+   <output idx='1'>
+      <path>//cisi-pfmaf-s.ad.cdn/data-woode/data/prod/travail/AOL/CUT_pivot/PLATEAU/PROFESSION___ACTEUR_2737735_23905371.stl_20190318_113319/PROFESSION_ACTEUR-output</path>
+   </output>
+   <output idx='2'>
+      <path>//cisi-pfmaf-s.ad.cdn/data-woode/data/prod/travail/AOL/CUT_pivot/PLATEAU/PROFESSION___ACTEUR_2737735_23905371.stl_20190318_113319/PROFESSION___ACTEUR_2737735_2390537-output.mp4</path>
+   </output>
+   <output idx='3'>
+      <path>//cisi-pfmaf-s.ad.cdn/data-woode/data/prod/travail/AOL/CUT_pivot/PLATEAU/PROFESSION___ACTEUR_2737735_23905371.stl_20190318_113319/PROFESSION___ACTEUR_2737735_2390537-output.mxf</path>
+   </output>
+   <output idx='4'>
+      <path>//cisi-pfmaf-s.ad.cdn/data-woode/data/prod/travail/AOL/CUT_pivot/PLATEAU/PROFESSION___ACTEUR_2737735_23905371.stl_20190318_113319/PROFESSION___ACTEUR_2737735_2390537-output.imf</path>
+   </output>
+   <output idx='5'>
+      <path>//cisi-pfmaf-s.ad.cdn/data-woode/data/prod/travail/AOL/CUT_pivot/PLATEAU/PROFESSION___ACTEUR_2737735_23905371.stl_20190318_113319/PROFESSION___ACTEUR_2737735_2390537-output.m3u8</path>
+   </output>
+   <output idx='6'>
+      <path>//cisi-pfmaf-s.ad.cdn/data-woode/data/prod/travail/AOL/CUT_pivot/PLATEAU/PROFESSION___ACTEUR_2737735_23905371.stl_20190318_113319/PROFESSION___ACTEUR_2737735_2390537-output.ism</path>
+   </output>
+   <output idx='7'>
+      <path>//cisi-pfmaf-s.ad.cdn/data-woode/data/prod/travail/AOL/CUT_pivot/PLATEAU/PROFESSION___ACTEUR_2737735_23905371.stl_20190318_113319/PROFESSION___ACTEUR_2737735_2390537-output.mp4</path>
+   </output>
+   <output idx='8'>
+      <path>//cisi-pfmaf-s.ad.cdn/data-woode/data/prod/travail/AOL/CUT_pivot/PLATEAU/PROFESSION___ACTEUR_2737735_23905371.stl_20190318_113319/PROFESSION___ACTEUR_2737735_2390537-output.raw</path>
+   </output>
+   <output idx='9'>
+      <path>//cisi-pfmaf-s.ad.cdn/data-woode/data/prod/travail/AOL/CUT_pivot/PLATEAU/PROFESSION___ACTEUR_2737735_23905371.stl_20190318_113319/PROFESSION___ACTEUR_2737735_2390537-output.mov</path>
+   </output>
+   <probe>
+      <segment idx='1'>
+         <input idx='1' module='mxf'>
+            <audio_map>Default</audio_map>
+            <file>\\cisi-pfmaf-s.ad.cdn\data-woode\data\prod\travail\AOL\CUT_pivot\PLATEAU\PROFESSION___ACTEUR_2737735_23905371.stl_20190318_113319\PROFESSION___ACTEUR_2737735_2390537.mxf</file>
+            <service idx='1' name='' id='0'>
+               <time_offset>0</time_offset>
+               <time first_frame_index='900000' />
+               <video stream='1' codec='m2v' probe_idx='65536' pid='0'>
+                  <color_space>i422</color_space>
+                  <bitrate>50000000</bitrate>
+                  <frame_type>interlaced</frame_type>
+                  <field_order>topFieldFirst</field_order>
+                  <frame_packing enabled='false' />
+                  <frame_size width='1920' height='1080' />
+                  <frame_rate num='25' den='1' />
+                  <display_aspect_ratio num='16' den='9' />
+                  <ccsub atsc='false' divicom='false' nadbs='false' scte20='false' />
+                  <time first_pts='0' first_dts='0' first_decoded_pts='0' source_offset='0' first_frame_index='900000' />
+                  <colorimetry />
+                  <vbv size='0' initial_occupancy='0' />
+               </video>
+               <audio stream='1' codec='raw' probe_idx='65792' pid='0' audio_map_idx='0'>
+                  <format>s24l</format>
+                  <sample_rate>48000</sample_rate>
+                  <layout>
+                     <channel>left</channel>
+                     <channel>right</channel>
+                  </layout>
+                  <audio_desc_cfg enabled='false' main_audio_idx='0' />
+                  <bitrate>0</bitrate>
+                  <language></language>
+                  <time first_pts='0' first_dts='0' first_decoded_pts='0' source_offset='0' />
+               </audio>
+               <audio stream='2' codec='raw' probe_idx='66048' pid='0' audio_map_idx='0'>
+                  <format>s24l</format>
+                  <sample_rate>48000</sample_rate>
+                  <layout>
+                     <channel>left</channel>
+                     <channel>right</channel>
+                  </layout>
+                  <audio_desc_cfg enabled='false' main_audio_idx='0' />
+                  <bitrate>0</bitrate>
+                  <language></language>
+                  <time first_pts='0' first_dts='0' first_decoded_pts='0' source_offset='0' />
+               </audio>
+               <audio stream='3' codec='raw' probe_idx='66304' pid='0' audio_map_idx='0'>
+                  <format>s24l</format>
+                  <sample_rate>48000</sample_rate>
+                  <layout>
+                     <channel>left</channel>
+                     <channel>right</channel>
+                  </layout>
+                  <audio_desc_cfg enabled='false' main_audio_idx='0' />
+                  <bitrate>0</bitrate>
+                  <language></language>
+                  <time first_pts='0' first_dts='0' first_decoded_pts='0' source_offset='0' />
+               </audio>
+               <audio stream='4' codec='raw' probe_idx='66560' pid='0' audio_map_idx='0'>
+                  <format>s24l</format>
+                  <sample_rate>48000</sample_rate>
+                  <layout>
+                     <channel>left</channel>
+                     <channel>right</channel>
+                  </layout>
+                  <audio_desc_cfg enabled='false' main_audio_idx='0' />
+                  <bitrate>0</bitrate>
+                  <language></language>
+                  <time first_pts='0' first_dts='0' first_decoded_pts='0' source_offset='0' />
+               </audio>
+            </service>
+         </input>
+      </segment>
+   </probe>
+   <metadata>
+      <brief></brief>
+      <description></description>
+   </metadata>
+</job>

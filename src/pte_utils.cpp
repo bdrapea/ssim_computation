@@ -68,7 +68,7 @@ namespace pte
                 std::string path_to_scaled_video = diff_path;
                 if((width != pivot_width) || (height != pivot_height))
                 {
-                    std::cout << "Rescaling " << video_name << " from " << width << 'x' << height << " -> " << pivot_width << 'x' << pivot_height << ':' << std::flush;
+                    std::cout << "Rescaling " << video_name << " from " << width << 'x' << height << " -> " << pivot_width << 'x' << pivot_height << ':' << std::endl;
                     err = scale_video(diff_path,encoded_folder_path,pivot_width,pivot_height,&path_to_scaled_video);
                     if(err) return err;
                     is_rescaled = true;
@@ -81,7 +81,6 @@ namespace pte
                 if(err) return err;
                 ssims->push_back(ssim);
                 std::cout << "ssim = " << ssim << '\n'<< std::endl;
-
 
                 if(is_rescaled)
                 {
@@ -366,9 +365,7 @@ namespace pte
             std::string::size_type ind = 0;
             if( (ind = buffer.find("time=")) != std::string::npos )
             {
-                for(size_t i=0; i<16; i++) std::cout << '\b';
-
-                std::cout << buffer.substr(ind, 16)  << std::endl;            }
+                std::cout << buffer.substr(ind, 16) << std::endl;            }
         }
 
         pclose(fp);
@@ -405,4 +402,126 @@ namespace pte
         return PTE_ERR_SUCCESS;
     }
 
+    int generate_canal_kjob(const fs::path& pivot_path,
+                            fs::path* kjob_path)
+    {
+        std::cout << "==========" << "Generate canal kjob" << "==========" << std::endl;
+
+        std::cout << "Check if pivot exist:" << std::endl;
+        if(!fs::exists(pivot_path))
+            return PTE_ERR_PIVOT_NOT_FOUND;
+        std::cout << "OK" << std::endl;
+
+        std::cout << "=====" << "Creating output directory:"  << "=====" << std::endl;
+        std::string output_dir_name = pivot_path.stem();
+        output_dir_name +=  "_output";
+
+        fs::path output_dir = pivot_path.parent_path() / output_dir_name;
+        std::cout << "Output dir path: " << output_dir << std::endl;
+        if(!fs::exists(output_dir))
+        {
+            std::cout << "Creating output directory " << output_dir_name << std::endl;
+            fs::create_directory(output_dir);
+        }
+        std::cout << "OK" << std::endl;
+
+        std::cout << "=====" << "Copying the kjob template file to output directory:"  << "=====" << std::endl;
+        std::string template_kjob_name = "template.kjob";
+        fs::path template_kjob_path = fs::path(__FILE__).parent_path().parent_path() / template_kjob_name;
+
+        std::cout << "===" << "Check kjob template path"  << "===" << std::endl;
+        if(!fs::exists(template_kjob_path))
+            return PTE_ERR_KJOB_NOT_FOUND;
+        std::cout << "OK" << std::endl;
+
+        std::cout << "===" << "Copying"  << "===" << std::endl;
+        *kjob_path = pivot_path.parent_path() / template_kjob_name;
+
+        if(fs::exists(*kjob_path))
+        {
+            std::cout << "file already exist: Deleting..." << std::endl;
+            remove(*kjob_path);
+        }
+
+        fs::copy_file(template_kjob_path,*kjob_path);
+        std::cout << "OK" << std::endl;
+
+
+        std::cout << "=====" << "Configure kjob file:"  << "=====" << std::endl;
+        int err = replace_input_outputs_in_canal_kjob(pivot_path,output_dir,*kjob_path);
+        if(err) return err;
+        std::cout << "OK" << std::endl;
+
+        return PTE_ERR_SUCCESS;
+    }
+
+    int replace_input_outputs_in_canal_kjob(const fs::path& input_path,
+                                            const fs::path& outputs_dir_path,
+                                            const fs::path& kjob_path)
+    {
+        std::ifstream file(kjob_path, std::ios::ate | std::ios::in | std::ios::binary);
+        if(!file.is_open())
+            return PTE_ERR_KJOB_NOT_FOUND;
+
+        int file_size = file.tellg();
+        file.seekg(0, std::ios::beg);
+
+        std::string buffer(file_size,0);
+        file.read(const_cast<char*>(buffer.data()), file_size);
+        file.close();
+
+        /** Editing input path **/
+        std::string input_keyword = "<file>";
+        std::string::size_type in_key_size = input_keyword.size();
+        std::string input_end_keyword = "</file>";
+
+        std::string::size_type ind = 0;
+        while((ind = buffer.find(input_keyword,ind+1))!=std::string::npos)
+        {
+            std::string::size_type ind_end = buffer.find(input_end_keyword,ind);
+
+            if(buffer.substr(ind,ind_end-ind).find("\n") != std::string::npos)
+                return PTE_ERR_KJOB_MISSING_FILE_END_KEY;
+
+            std::string::size_type begin_path_ind = ind+in_key_size;
+            buffer.erase(begin_path_ind, ind_end-begin_path_ind);
+            buffer.insert(begin_path_ind,input_path);
+        }
+
+        if(!ind)
+            return PTE_ERR_KJOB_FILE_KEY_NOT_FOUND;
+
+        /** Editing output paths **/
+        std::string output_keyword = "<path>";
+        std::string::size_type out_key_size = output_keyword.size();
+        std::string output_end_keyword = "</path>";
+        std::string output_name = input_path.stem();
+            output_name += "-output";
+        fs::path output_path = outputs_dir_path;
+        output_path /= output_name;
+
+        ind = 0;
+        while((ind = buffer.find(output_keyword,ind+1))!=std::string::npos)
+        {
+            std::string::size_type ind_end = buffer.find(output_end_keyword,ind);
+            std::string::size_type begin_path_ind = ind+out_key_size;
+
+            std::string extension = fs::path(buffer.substr(begin_path_ind,ind_end-begin_path_ind)).extension();
+            buffer.erase(begin_path_ind, ind_end-begin_path_ind);
+            if(extension == "")
+                buffer.insert(begin_path_ind,std::string(output_path)+".ts");
+            else
+                buffer.insert(begin_path_ind,std::string(output_path)+"__"+extension);
+        }
+
+        if(!ind)
+            return PTE_ERR_KJOB_FILE_KEY_NOT_FOUND;
+
+        /** Paste the result of editing in kjob **/
+        std::ofstream ofile(kjob_path);
+        ofile.write(const_cast<char*>(buffer.data()), buffer.size());
+        ofile.close();
+
+        return PTE_ERR_SUCCESS;
+    }
 }

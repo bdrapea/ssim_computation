@@ -19,6 +19,11 @@ extern "C"
 #define PTE_ERR_POPEN_FAIL 7
 #define PTE_ERR_CANT_FIND_SSIM_SCORE_IN_LOGS 8
 #define PTE_ERR_LIBAVCODEC_ERROR 9
+#define PTE_ERR_KJOB_NOT_FOUND 10
+#define PTE_ERR_CANNOT_COPY_FILE 11
+#define PTE_ERR_KJOB_FILE_KEY_NOT_FOUND 12
+#define PTE_ERR_KJOB_MISSING_FILE_END_KEY 13
+#define PTE_ERR_KJOB_PATH_KEY_NOT_FOUND 14
 
 namespace pte
 {
@@ -32,7 +37,13 @@ namespace pte
         "The path submitted is not valid",
         "Cannot print libav error... Where is your god now ?"
         "Can't find ssim score in logs",
-        "An error occured with function of libcodec"    };
+        "An error occured with function of libcodec",
+        "Cannot find kjob file",
+        "Cannot copy file",
+        "Cannot find <file> keyword in kjob",
+        "Missing </file> keyword in kjob",
+        "Cannot find <path> keyword in kjob",
+        "Missing </path> keyword in kjob"    };
 
     void print_error(const int error_id);
 

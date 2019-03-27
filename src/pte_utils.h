@@ -8,6 +8,7 @@
 #include <sstream>
 #include <array>
 #include <memory>
+#include <experimental/filesystem>
 
 #include "pte_errors.h"
 
@@ -16,6 +17,8 @@ extern "C"
     #include <libavformat/avformat.h>
     #include <libavcodec/avcodec.h>
 }
+
+namespace fs = std::experimental::filesystem;
 
 namespace pte
 {
@@ -71,4 +74,11 @@ namespace pte
     int generate_log_from_ssims(const std::vector<double>& ssims,
                                 const std::vector<std::string>& video_names,
                                 const std::string& path_to_log);
+
+    int generate_canal_kjob(const fs::path& pivot_path,
+                            fs::path* kjob_path);
+
+    int replace_input_outputs_in_canal_kjob(const fs::path& input_path,
+                                            const fs::path& output_dir_path,
+                                            const fs::path& kjob_path);
 }
